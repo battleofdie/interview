@@ -4,6 +4,7 @@ Schedule
 Day 1 
 =====
 [2014-02-9 Sun]
+
   1. RemoveDuplicatesfromSortedArray
   2. RemoveDuplicatesfromSortedArrayII 
   3. SearchinRotatedSortedArray
@@ -14,6 +15,7 @@ Day 1
 Day 2
 =====
 [2014-02-10 Mon]
+
   1.Longest Consecutive Sequence
   2.Two Sum
   3.3Sum

@@ -29,3 +29,22 @@ Day 3
   3. Permutation Sequence
   4. Valid Sudoku
   5. Trapping Rain Water
+
+
+Day 4
+=====
+[2014-02-12 Wed]
+  1. Rotate Image
+  2. Plus One
+  3. Climbing Stairs 
+  4. Gray Code
+  5. Set Matrix Zeroes
+
+Day 5
+=====
+[2014-02-12 Wed]
+  1. Gas Station
+  2. Candy
+  3. Single Number 
+  4. Single Number II
+  5. Add Two Numbers

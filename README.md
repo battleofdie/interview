@@ -1,8 +1,8 @@
 Schedule
 ========
 
-Day 1 
-=====
+Day 1 [Array]
+=============
 [2014-02-9 Sun]
   1. RemoveDuplicatesfromSortedArray
   2. RemoveDuplicatesfromSortedArrayII 
@@ -11,8 +11,8 @@ Day 1
   5. MedianofTwoSortedArrays
 
 
-Day 2
-=====
+Day 2 [Array]
+=============
 [2014-02-10 Mon]
   1. Longest Consecutive Sequence
   2. Two Sum
@@ -21,8 +21,8 @@ Day 2
   5. 4Sum
 
 
-Day 3
-=====
+Day 3 [Array]
+=============
 [2014-02-11 Tue]
   1. Remove Element
   2. Next Permutation
@@ -31,8 +31,8 @@ Day 3
   5. Trapping Rain Water
 
 
-Day 4
-=====
+Day 4 [Array]
+=============
 [2014-02-12 Wed]
 
   1. Rotate Image
@@ -41,11 +41,11 @@ Day 4
   4. Gray Code
   5. Set Matrix Zeroes
 
-Day 5
-=====
+Day 5 [Array, LinkList]
+=======================
 [2014-02-13 Thu]
   1. Gas Station
   2. Candy
   3. Single Number 
   4. Single Number II
-  5. Add Two Numbers
+  5. [LinkedList] Add Two Numbers

@@ -34,6 +34,7 @@ Day 3
 Day 4
 =====
 [2014-02-12 Wed]
+
   1. Rotate Image
   2. Plus One
   3. Climbing Stairs 
@@ -42,7 +43,7 @@ Day 4
 
 Day 5
 =====
-[2014-02-12 Wed]
+[2014-02-13 Thu]
   1. Gas Station
   2. Candy
   3. Single Number 

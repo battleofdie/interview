@@ -61,11 +61,11 @@ Day 6 [LinkedList]
 Day 7 [LinkedList]
 ==================
 [2014-02-15 Sat]
-  1. Remove Nth Node From End of List
-  2. Swap Nodes in Pairs
-  3. Reverse Nodes in k-Group
+  1. [x] Remove Nth Node From End of List
+  2. [x] Swap Nodes in Pairs
+  3. [x] Reverse Nodes in k-Group
   4. Copy List with Random Pointer
-  5. Linked List Cycle
+  5. [x] Linked List Cycle
 
 Day 8 [LinkedList, String]
 ==========================

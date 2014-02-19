@@ -64,23 +64,23 @@ Day 7 [LinkedList]
   1. [x] Remove Nth Node From End of List
   2. [x] Swap Nodes in Pairs
   3. [x] Reverse Nodes in k-Group
-  4. Copy List with Random Pointer
+  4. [x] Copy List with Random Pointer
   5. [x] Linked List Cycle
 
 Day 8 [LinkedList, String]
 ==========================
 [2014-02-16 Sun]
-  1. Linked List Cycle II
+  1. [x] Linked List Cycle II
   2. Reorder List
   3. LRU Cache
-  4. Valid Palindrome
+  4. [x] Valid Palindrome
   5. Implement strStr()
 
 
 Day 9 [String]
 ==============
 [2014-02-17 Mon]
-  1. String to Integer (atoi)
+  1. [x] String to Integer (atoi)
   2. Add Binary
   3. Longest Palindromic Substring
   4. Regular Expression Matching

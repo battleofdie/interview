@@ -81,10 +81,10 @@ Day 9 [String]
 ==============
 [2014-02-17 Mon]
   1. [x] String to Integer (atoi)
-  2. Add Binary
-  3. Longest Palindromic Substring
-  4. Regular Expression Matching
-  5. Wildcard Matching
+  2. [x] Add Binary
+  3. [x] Longest Palindromic Substring
+  4. [x] Regular Expression Matching
+  5. [x] Wildcard Matching
 
 Day 10 [String]
 ===============
@@ -103,3 +103,30 @@ Day 11 [String]
   3. Length of Last Word
   4. Valid Parentheses
   5. Longest Valid Parentheses
+
+Day 12
+======
+[2014-02-20 Thu]
+  1. Reverse Integer
+  2. Search Insert Position
+  3. Unique Paths
+  4. Unique Paths II
+  5. Valid Number
+
+Day 13 [Tree]
+=============
+[2014-02-21 Fri]
+  1. Maximum Depth of Binary Tree
+  2. Same Tree
+  3. Unique Binary Search Trees
+  4. Binary Tree Preorder Traversal
+  5. Binary Tree Inorder Traversal
+
+Day 14 [Tree]
+=============
+[2014-02-22 Sat]
+  1. Populating Next Right Pointers in Each Node
+  2. Best Time to Buy and Sell Stock
+  3. Maximum Subarray
+  4. Convert Sorted Array to Binary Search Tree
+  5. Symmetric Tree

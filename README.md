@@ -90,9 +90,9 @@ Day 10 [String]
 ===============
 [2014-02-18 Tue]
   1. Longest Common Prefix
-  2. Valid Number
-  3. Integer to Roman
-  4. Roman to Integer
+  2. [x] Valid Number
+  3. [x] Integer to Roman
+  4. [x] Roman to Integer
   5. Count and Say
 
 Day 11 [String, DP]

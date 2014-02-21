@@ -111,7 +111,7 @@ Day 12 [Misc, DP]
   2. [x] Search Insert Position
   3. [x] Unique Paths
   4. [x] Unique Paths II
-  5. Valid Number
+  5. [x] Valid Number
 
 Day 13 [Tree]
 =============

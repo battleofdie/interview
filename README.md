@@ -98,7 +98,7 @@ Day 10 [String]
 Day 11 [String, DP]
 ===================
 [2014-02-19 Wed]
-  1. Anagrams
+  1. [x] Anagrams
   2. Simplify Path
   3. Length of Last Word
   4. Valid Parentheses
@@ -116,8 +116,8 @@ Day 12 [Misc, DP]
 Day 13 [Tree]
 =============
 [2014-02-21 Fri]
-  1. Maximum Depth of Binary Tree
-  2. Same Tree
+  1. [x] Maximum Depth of Binary Tree
+  2. [x] Same Tree
   3. Unique Binary Search Trees
   4. Binary Tree Preorder Traversal
   5. Binary Tree Inorder Traversal

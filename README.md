@@ -95,8 +95,8 @@ Day 10 [String]
   4. Roman to Integer
   5. Count and Say
 
-Day 11 [String]
-===============
+Day 11 [String, DP]
+===================
 [2014-02-19 Wed]
   1. Anagrams
   2. Simplify Path
@@ -104,13 +104,13 @@ Day 11 [String]
   4. Valid Parentheses
   5. Longest Valid Parentheses
 
-Day 12
-======
+Day 12 [Misc, DP]
+=================
 [2014-02-20 Thu]
-  1. Reverse Integer
-  2. Search Insert Position
-  3. Unique Paths
-  4. Unique Paths II
+  1. [x] Reverse Integer
+  2. [x] Search Insert Position
+  3. [x] Unique Paths
+  4. [x] Unique Paths II
   5. Valid Number
 
 Day 13 [Tree]

@@ -89,7 +89,7 @@ Day 9 [String]
 Day 10 [String]
 ===============
 [2014-02-18 Tue]
-  1. Longest Common Prefix
+  1. [x] Longest Common Prefix
   2. [x] Valid Number
   3. [x] Integer to Roman
   4. [x] Roman to Integer

@@ -93,7 +93,7 @@ Day 10 [String]
   2. [x] Valid Number
   3. [x] Integer to Roman
   4. [x] Roman to Integer
-  5. Count and Say
+  5. [x] Count and Say
 
 Day 11 [String, DP]
 ===================

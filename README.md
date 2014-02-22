@@ -118,9 +118,12 @@ Day 13 [Tree]
 [2014-02-21 Fri]
   1. [x] Maximum Depth of Binary Tree
   2. [x] Same Tree
-  3. Unique Binary Search Trees
-  4. Binary Tree Preorder Traversal
-  5. Binary Tree Inorder Traversal
+  3. [x] Unique Binary Search Trees
+  4. [x] Unique Binary Search Trees ii
+  5. [x] Binary Tree Preorder Traversal
+  6. [x] Binary Tree Postorder Traversal
+  7. [x] Binary Tree Inorder Traversal
+  8. [x] sqrt
 
 Day 14 [Tree]
 =============

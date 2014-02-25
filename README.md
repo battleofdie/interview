@@ -131,15 +131,15 @@ Day 14 [Tree, Algorithm]
   2. [X] Populating Next Right Pointers in Each Node ii
   3. [X] Best Time to Buy and Sell Stock
   4. [X] Maximum Subarray
-  5. [ ] Convert Sorted Array to Binary Search Tree
-  6. [ ] Symmetric Tree
+  5. [X] Convert Sorted Array to Binary Search Tree
+  6. [X] Symmetric Tree
 
 Day 15 [Algorithm]
 ==================
 [2014-02-23 Sun]
   1. [X] Best Time to Buy and Sell Stock II 
-  2. [ ] Merge Sorted Array
-  3. [ ] Balanced Binary Tree
+  2. [X] Merge Sorted Array
+  3. [X] Balanced Binary Tree
   4. [ ] Binary Tree Level Order Traversal
   5. [ ] Binary Tree Level Order Traversal II
 

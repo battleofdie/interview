@@ -146,8 +146,9 @@ Day 15 [Algorithm]
 Day 16 [Algorithm]
 ==================
 [2014-02-24 Mon]
-  1. [ ] Permutations 
-  2. [ ] Sort Colors
-  3. [ ] Minimum Path Sum
-  4. [ ] Container With Most Water
-  5. [ ] Pascal's Triangle
+  1. [X] Permutations 
+  2. [X] Permutations II
+  3. [ ] Sort Colors
+  4. [ ] Minimum Path Sum
+  5. [ ] Container With Most Water
+  6. [ ] Pascal's Triangle

@@ -156,11 +156,11 @@ Day 16 [Algorithm]
 Day 17 [Algorithm]
 ==================
 [2014-02-25 Tue]
-  1. [ ] Generate Parentheses
-  2. [ ] Search a 2D Matrix
-  3. [ ] Path Sum
-  4. [ ] Spiral Matrix II
-  5. [ ] Pascal's Triangle II
+  1. [X] Generate Parentheses
+  2. [X] Search a 2D Matrix
+  3. [X] Path Sum
+  4. [X] Spiral Matrix II
+  5. [X] Pascal's Triangle II
 
 Day 18 [Algorithm]
 ==================

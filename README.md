@@ -100,7 +100,7 @@ Day 11 [String, DP]
   1. [X] Anagrams
   2. [ ] Simplify Path
   3. [ ] Length of Last Word
-  4. [ ] Valid Parentheses
+  4. [X] Valid Parentheses
   5. [ ] Longest Valid Parentheses
 
 Day 12 [Misc, DP]
@@ -179,7 +179,6 @@ Day 19 [Algorithm]
   3. [ ] Subsets
   4. [ ] Jump Game
   5. [ ] Subsets II
-  6. [ ] Extra: Go To The Gym
 
 Day 20 [Algorithm]
 ==================
@@ -189,7 +188,6 @@ Day 20 [Algorithm]
   3. [ ] Flatten Binary Tree to Linked List
   4. [ ] Triangle
   5. [ ] Binary Tree Zigzag Level Order Traversal
-  6. [ ] Extra: Go To The Gym
 
 Day 21 [Algorithm]
 ==================
@@ -199,17 +197,15 @@ Day 21 [Algorithm]
   3. [ ] Letter Combinations of a Phone Number
   4. [ ] Construct Binary Tree from Inorder and Postorder Traversal
   5. [ ] Construct Binary Tree from Preorder and Inorder Traversal
-  6. [ ] Extra: Go To The Gym
 
-Day 22 [Algorithm]
-==================
+Day 22 [Algorithm, DP]
+======================
 [2014-03-02 Sun]
   1. [ ] Palindrome Partitioning
-  2. [ ] Permutations II 
-  3. [ ] Edit Distance
-  4. [ ] Distinct Subsequences
+  2. [X] Permutations II 
+  3. [X] Edit Distance
+  4. [X] Distinct Subsequences
   5. [ ] Combination Sum II
-  6. [ ] Extra: Go To The Gym
 
 Day 23 [Algorithm]
 ==================
@@ -219,7 +215,6 @@ Day 23 [Algorithm]
   3. [ ] ZigZag Conversion
   4. [ ] Recover Binary Search Tree
   5. [ ] First Missing Positive
-  6. [ ] Extra: Go To The Gym
 
 Day 24 [Algorithm]
 ==================
@@ -229,17 +224,15 @@ Day 24 [Algorithm]
   3. [ ] Sqrt(x)
   4. [ ] Scramble String
   5. [ ] Maximal Rectangle
-  6. [ ] Extra: Go To The Gym
 
 Day 25 [Algorithm, Graph]
 ==========================
 [2014-03-05 Wed]
   1. [ ] Clone Graph
   2. [ ] Longest Palindromic Substring
-  3. [ ] Sudoku Solver
+  3. [X] Sudoku Solver
   4. [ ] Largest Rectangle in Histogram
   5. [ ] Insert Interval
-  6. [ ] Extra: Go To The Gym
 
 Day 26 [Algorithm]
 ==================
@@ -249,7 +242,6 @@ Day 26 [Algorithm]
   3. [ ] Restore IP Addresses
   4. [ ] Word Break
   5. [ ] Multiply Strings
-  6. [ ] Extra: Go To The Gym
 
 Day 27 [Algorithm]
 ==================
@@ -259,7 +251,6 @@ Day 27 [Algorithm]
   3. [ ] Binary Tree Maximum Path Sum
   4. [ ] Word Search
   5. [ ] Simplify Path
-  6. [ ] Extra: Go To The Gym
 
 Day 28 [Algorithm]
 ==================
@@ -269,7 +260,6 @@ Day 28 [Algorithm]
   3. [ ] Substring with Concatenation of All Words
   4. [ ] Palindrome Partitioning II
   5. [ ] Minimum Window Substring
-  6. [ ] Extra: Go To The Gym
 
 Day 29 [Algorithm]
 ==================
@@ -279,7 +269,6 @@ Day 29 [Algorithm]
   3. [ ] Divide Two Integers
   4. [ ] Decode Ways
   5. [ ] Word Break II
-  6. [ ] Extra: Go To The Gym
 
 Day 30 [Algorithm]
 ==================
@@ -289,4 +278,3 @@ Day 30 [Algorithm]
   3. [ ] Wildcard Matching
   4. [ ] Max Points on a Line
   5. [ ] Word Ladder II
-  6. [ ] Extra: Go To The Gym

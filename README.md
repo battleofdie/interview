@@ -211,10 +211,10 @@ Day 23 [Algorithm]
 ==================
 [2014-03-03 Mon]
   1. [ ] Longest Substring Without Repeating Characters
-  2. [ ] Anagrams
+  2. [X] Anagrams
   3. [ ] ZigZag Conversion
   4. [ ] Recover Binary Search Tree
-  5. [ ] First Missing Positive
+  5. [X] First Missing Positive
 
 Day 24 [Algorithm]
 ==================

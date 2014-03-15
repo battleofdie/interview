@@ -174,7 +174,7 @@ Day 18 [Algorithm]
 Day 19 [Algorithm]
 ==================
 [2014-02-27 Thu]
-  1. [ ] Length of Last Word
+  1. [X] Length of Last Word
   2. [ ] Path Sum II
   3. [ ] Subsets
   4. [ ] Jump Game

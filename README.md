@@ -1,4 +1,4 @@
-Schedule
+schedule
 ========
 
 Day 1 [Array]
@@ -98,8 +98,8 @@ Day 11 [String, DP]
 ===================
 [2014-02-19 Wed]
   1. [X] Anagrams
-  2. [ ] Simplify Path
-  3. [ ] Length of Last Word
+  2. [X] Simplify Path
+  3. [X] Length of Last Word
   4. [X] Valid Parentheses
   5. [ ] Longest Valid Parentheses
 

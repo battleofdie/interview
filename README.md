@@ -165,12 +165,12 @@ Day 17 [Algorithm]
 Day 18 [Algorithm]
 ==================
 [2014-02-26 Wed]
-  1. [ ] N-Queens II
+  1. [X] N-Queens II
   2. [ ] Populating Next Right Pointers in Each Node II
   3. [ ] Palindrome Number
   4. [ ] Sum Root to Leaf Numbers
   5. [ ] Minimum Depth of Binary Tree
-
+  6. [X] N-Queens
 Day 19 [Algorithm]
 ==================
 [2014-02-27 Thu]

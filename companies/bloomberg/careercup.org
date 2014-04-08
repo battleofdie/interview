@@ -1,0 +1,220 @@
+* Questions [12/30]
+  1. [X] Write a program to accept a nonempty string of alphanumeric characters. Define a “run” as a 
+         consecutive sequence of a single character. For example, “aaaa” is a run of length 4. The program will 
+         print the longest run in the given string. If there is no single longest run, then you may print any of 
+         those runs whose length is at least as long as all other runs in the string. 
+
+         Example input: a 
+        
+         Example output: a 
+
+         Example input: aab 
+
+         Example output: aa 
+
+         Example input: abbbbbcc 
+
+         Example output: bbbbb 
+
+         Example input: aabbccdd 
+
+         Example output: aa
+        
+  2. [X] Write a program to accept a nonempty string of 0's and 1's as an argument. The program will print the 
+         offsets of runs, each run consisting of all 0's or all 1's, where the runs are longer than 1. For example, if 
+         given "0010011" it will print "0, 3, 5" on stdout.
+  3. [X] For an N-ary Tree find the nearest common ancestor. 
+         
+         Given: rootid and a function which finds and returns the immediate parent of a node.
+         
+         <Answer>If nodes contain parent pointers, use hash table.</Answer>
+
+  4. [X] Given a set of integer dots (like (1,5)), how can you find a pair that has an integer 
+         mid-point? For example, (1,1) and (3,3) have an integer mid-point of (2,2), 
+         while (1,1) and (3,2) do not. Tell the complexity of your code. What if the dots 
+         are N-dimensional?
+        
+         <Answer>
+         We have {even-even, even-odd, odd-odd, odd-even} cases, check the first 5 elements 
+         of the input(assuming no duplicates). It is guaranteed that at least one pair of 
+         qualified points can be found. 
+
+         For N-dimensional points, we have to check $2^n + 1$ elements using our method. However,
+         we can compare every 2-pair points. It takes O(n) time to check a pair and we have 2Cm
+         pairs where m is the number of points. That makes a running time of $O(n*m^2)$.
+         </Answer>
+  5. [X] Find first unique number in an unsorted array of 32 bit numbers without using 
+         hash tables or array of counters.
+        
+         <Answer>
+         1) Hash table or array of counters: count all the numbers and return the first element that is not in the hash table or array.
+         2) Sort the array, O(nlgn); Iterate the original array and return the first unique element.  O(nlgn) time and O(n) space. 
+         </Answer>
+  6. [X] There is a large data file with 10 digit numbers. You are allowed to use only 20 megabytes of memory. How would you sort them?
+
+         <Answer>
+         1) External sort. First sort every 20Mb data(5 million integers) using radix sort then merge them.
+        
+         2) External sort:[fn:1] One-pass or two-pass will work.
+
+         </Answer>
+  7. [X] Find the longest repeating character in a sorted string[fn:2]
+  8. [X] Player turns are stored in an array like so [1,2,1,2,1,2,1,2]. Make it so that player 1 finishes first and then player 2. i.e [1,1,1,1,2,2,2,2] [fn:3]
+         Notes: I didn't get this. lol
+  9. [X] An array contains the following elements [9,6,-3,1,7] and a value is equal to 4. Find a pair of numbers in the array that equal the sum. [fn:4]
+         2-sum? Easy!
+  10. [X] How do you implement stack in STL? What is the complexity? [fn:5]
+          Linkedlist is enough as we can push/pop at the head of linkedlist. But there is no such thing like Linkedlist in c++ STL!
+          <Answer>
+          vector would work. 
+          #+begin_example
+          vector::push_back  => push  =>  constant time if no allocation happens
+          vector::pop_back   => pop   =>  constant time
+          vector::back()     => top   =>  constant time
+          #+end_example
+          </Answer>
+  11. [X] I have 5 arrays with integer elements. I want to find the common elements in all 5 arrays. What is the logic? [fn:6]
+          <Answer>
+          Use one hash table, i.e., unordered_map in C++. Iterate the original 5 arrays. For ith array, maximum count for each element is i. When we are iterating
+          2-5th array, ignore the elements that are not in the hash table. Finally, return all elements in the hash table with count equals to 5.
+
+          O(n) time and O(n) space.
+          </Answer>
+  12. [ ] What is smart pointer? How do you implement? What happens with the following: p2 = p1; 
+          What happens P3(p1) (copy const)?
+  13. [ ] Picture a restaurant kitchen with tickets of customer’s orders which has a start time, end time of when the order was completed, and price. How would you find the longest 
+          contiguous time that tickets were processed within a given day? [fn:7]
+  14. [ ] Websites like Pandora recommend music based on user preferences. What kind of information would you need in such a design? [fn:8]
+  15. [ ] Given an integer, print out all the prime numbers smaller than that integer. [fn:9]
+  16. [ ] Given a binary tree, find out the maximum sum of value from root to each leaf. [fn:10]
+          #+begin_example
+          find_Max(Node *root){
+              if (root==null)
+                  return 0;
+              else
+                  return max((find_Max(root->left), find_Max(root->right))+root->value;
+          }
+          #+end_example
+  17. [ ] Find the largest k numbers in an enormous array of numbers. You cannot sort the array. Give the run time of the algorithm. [fn:11]
+  18. [ ] Given an integer N, print numbers from 1 to N in lexicographic order. [fn:12]
+          Details: To be implemented without using character conversion (or Strings). 
+
+          Example: 
+          N = 25 
+
+          Print: 
+          1 
+          10 
+          11 
+          .. 
+          19 
+          2 
+          20 
+          21 
+          .. 
+          25 
+          3 
+          4 
+          5 
+          6 
+          7 
+          8 
+          9 
+
+  19. [ ] What are virtual constructors and virtual destructors? [fn:13]
+  20. [ ] In code there is a breakpoint at the first line of main function. The program is executed but it crashes without touching the breakpoint. Is there any code that is executed 
+          before main itself. [fn:14]
+          #+begin_example
+          int funky()
+          {
+              return *( (int*)0 );
+          }
+          
+          int c = funky();
+          
+          int main()
+          {
+              return 0;
+          }
+          #+end_example
+  21. [ ] Given historical data for the stocks of a company for say 8 day. you can buy and sell the stocks just once. Find the maximum profit you can make: [fn:15]
+          |-----+---+---+---+---+---+---+---+---|
+          | Day | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+          |-----+---+---+---+---+---+---+---+---|
+          | N/A | 5 | 9 | 6 | 2 | 4 | 8 | 3 | 1 |
+          |-----+---+---+---+---+---+---+---+---|
+  22. [ ] Given a string 'aabbcdccefff', find the first Non-duplicate character i.e. 'd'. [fn:16]
+  23. [ ] Q: If you have all the companies that are traded, and live inputs are coming of which company is being traded and what is the volume, how do you maintain the data, so that 
+          you can carry out operation of giving the top 10 most traded companies by volume of shares most efficiently.  [fn:17]
+          A: I juggled between Hash Map and Max Heap. I said Max Heap, since I can take out top 10 companies in a jiffy with a Max Heap. But then he asked you will need to find a company everytime there is a trade, which will take quite some time in Heap. He pointed out that in real world scenario, number of trades happening, and hence searching of the company and updating it, will be many times more than finding top 10. Which bought me to HashMap. Updations can happen in Real time, while finding top 10 can be done in O(n) or O(nlog(n)) time. 
+          Even that wasn't optimal obviously. The interviewer was very nice and friendly type guy. He stressed that at every trade, at most, only 1 company will change in my top 10. This hit me and got me to the correct answer that we keep all actual data in HashMap, but also maintain a MinHeap of 10 most traded company.
+  24. [ ] Q: If I give you a new book, and ask you to create the index which is found at the end of the book, how will you do it. [fn:18]
+          A: I said for constant addition time of words (and page numbers) in the data structure, we can use Hashmap or TRIE. But 
+          since output has to be in alphabetic order, we will use a Trie DS, where at the end of each word, we simple store a list of page numbers.
+  25. [ ] Q: The New operator...how does it work, what are the steps? [fn:19]
+          A: I just said it creates a new memory in the heap and the reference points to it. He seemed satisfied.
+  26. [ ] Q: Do you know what is a Binary tree? How would you go about coding for addition of a new element to Binary tree? [fn:20]
+          A: I asked if they want a Binary Tree or a BST? When he said BST I just said we can have a recursive function in which we pass the root of the tree and see if the value to be 
+          added is smaller or bigger than the root, and depending on result, we go to left or right of the tree, assuming the left (or right) is not null. If null, just use new to create 
+          a memory location, put the value, and use the left reference of the root to link to this new memory. Simple basic stuff.
+  27. [ ] Q: Do you know what is a stack? Explain [fn:21]
+          A: Yes, explained LIFO push pop peek 
+          Q: In stack, Push and Pop are constant. What will you do if you want an operation which gives the min of the stack also in constant time? 
+          A: Question is straight out of Gayle's Book. You just maintain a new stack of minimum number till that point.
+  28. [ ] 3 Baskets, with label Apple Orange and Mixed. All the lables are incorrect. Pick up one fruit from one of the 3 baskets and find the correct labels for these 3 baskets.[fn:22]
+  29. [X] How to find a missing value in an size N unsorted array (value from 0 to N but missing one of them). [fn:23]
+          <Answer>
+          1) n*(n-1)/2 - sum(input), but it might overflow
+          2) XOR every elements in input and 0:N; return the result; this method can avoid overflow.
+          </Answer>
+* Other Questions [0/2]
+  - [ ] Least commond ancestor
+  - [ ] All sorting algorithms
+
+* Footnotes
+
+[fn:1] http://en.wikipedia.org/wiki/External_sorting
+
+[fn:2] http://www.careercup.com/question?id=5680360385937408
+
+[fn:3] http://www.careercup.com/question?id=6298005405696000
+
+[fn:4] http://www.careercup.com/question?id=6251207442038784
+
+[fn:5] http://www.careercup.com/question?id=5070965260156928
+
+[fn:6] http://www.careercup.com/question?id=6545930346037248
+
+[fn:7] http://www.careercup.com/question?id=6338884266885120
+
+[fn:8] http://www.careercup.com/question?id=5707438493794304
+
+[fn:9] http://www.careercup.com/question?id=5696692485619712
+
+[fn:10] http://www.careercup.com/question?id=4921930381524992
+
+[fn:11] http://www.careercup.com/question?id=6033455032827904
+
+[fn:12] http://www.careercup.com/question?id=6185570560638976
+
+[fn:13] http://www.careercup.com/question?id=5129303884824576
+
+[fn:14] http://www.careercup.com/question?id=5143391377555456
+
+[fn:15] http://www.careercup.com/question?id=5541234735054848
+
+[fn:16] http://www.careercup.com/question?id=5168873418522624
+
+[fn:17] http://www.careercup.com/question?id=17543678
+
+[fn:18] http://www.careercup.com/question?id=17425672
+
+[fn:19] http://www.careercup.com/question?id=17380675
+
+[fn:20] http://www.careercup.com/question?id=17544673
+
+[fn:21] http://www.careercup.com/question?id=17215679
+
+[fn:22] http://www.careercup.com/question?id=16585677
+
+[fn:23] http://www.careercup.com/question?id=16594681

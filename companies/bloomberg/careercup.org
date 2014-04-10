@@ -1,4 +1,4 @@
-* Questions Set 1 [25/29]
+* Questions Set 1 [27/29]
   1. [X] Write a program to accept a nonempty string of alphanumeric characters. Define a “run” as a 
          consecutive sequence of a single character. For example, “aaaa” is a run of length 4. The program will 
          print the longest run in the given string. If there is no single longest run, then you may print any of 
@@ -80,8 +80,48 @@
 
           O(n) time and O(n) space.
           </Answer>
-  12. [ ] What is smart pointer? How do you implement? What happens with the following: p2 = p1; 
+  12. [X] What is smart pointer? How do you implement? What happens with the following: p2 = p1; 
           What happens P3(p1) (copy const)?
+          #+begin_example
+          #include <iostream>
+
+          template <class T>
+          class SmartPointer{
+              int* ref;
+              T* pointer;
+
+          public:
+              SmartPointer(T* object);
+              SmartPointer(SmartPointer<T>& sp);
+
+              SmartPointer<T>& operator=(SmartPointer<T>& sp);
+              ~SmartPointer();
+          };
+
+          template <class T>
+          SmartPointer(T* object)
+          {
+              ref = new int;
+              *ref = 1;
+
+              pointer = object;
+          }
+
+
+          template <class T>
+          Pointer::~SmartPointer()
+          {
+              if(*ref > 0) --(*ref);
+
+              if(*ref == 0 && nullptr != pointer) 
+              {
+                  delete pointer;
+                  delete ref;
+              }
+
+              pointer = nullptr;
+          }
+          #+end_example
   13. [ ] Picture a restaurant kitchen with tickets of customer’s orders which has a start time, end time of when the order was completed, and price. How would you find the longest 
           contiguous time that tickets were processed within a given day? [fn:7]
           
@@ -92,7 +132,55 @@
 
           </Answer>
   14. [ ] Websites like Pandora recommend music based on user preferences. What kind of information would you need in such a design? [fn:8]
-  15. [ ] Given an integer, print out all the prime numbers smaller than that integer. [fn:9]
+  15. [X] Given an integer, print out all the prime numbers smaller than that integer. [fn:9]
+          #+begin_example
+          #include <iostream>
+          #include <vector>
+          #include <cstdlib>
+
+          using namespace std;
+
+          void printPrimes(int n)
+          {
+              if(n <= 1) return;
+
+              vector<bool> num(n+1, true);
+              num[0] = false; // 0 is not prime
+              num[1] = false; // 1 is not prime
+
+              int first = 2;
+              for(int first=2; first<=n; first++)
+              {
+                  // if first is prime
+                  if(num[first])
+                  {
+                      for(int i=first+1; i<=n; i++)
+                      {
+                          if(i % first == 0) 
+                              num[i] = false;
+                      }
+                  }
+              }
+
+              // print
+              for(int i =0; i<=n; i++)
+              {
+                  if(num[i]) cout << i << " ";
+              }
+
+              cout << endl;
+          }
+
+          int main(int argc, char *argv[])
+          {
+              int x = atoi(argv[1]);
+
+              printPrimes(x);
+
+              return 0;
+          }
+
+          #+end_example
   16. [X] Given a binary tree, find out the maximum sum of value from root to each leaf. [fn:10]
           #+begin_example
           find_Max(Node *root){
@@ -262,9 +350,115 @@
           2) XOR every elements in input and 0:N; return the result; this method can avoid overflow.
           </Answer>
 
-* Question Set 2 [0/1]
-  1. [ ] xxx
+* Question Set 2 [5/30]
+  1. [X] Difference between C++ and Java [fn:24]
 
+         Knowledge:
+         1) c++ supports multiple inheritance, but java doesn't support directly. 
+         2) Programmer responsible for memory management in C++, but JVM will take care of it by GC 
+         3) C++ requires some code tweaks to run on different platforms, but java doesn't require any code changes due to byte code handled by JVM 
+         4) C++ can communicate well with native libraries (kind of OS and drivers), but Java is not that efficient directly even though JNI is available. 
+         5) Java is quite suitable for Web based applications compare to C++ 
+         6) C++ is quite suitable for low level programming compare to 
+         7) C++ supports call by value and call by reference, but java doesn't support call by reference, infact it is call by reference value.
+  2. [X] Given a char array {1,234,34,54} 
+         Modify the char array so that there is no comma in the most efficient way. We must get a char array {12343454} [fn:25]
+  3. [X] Given an unsorted set of numbers from 1 to 10 with one number missing . 
+         How to find the missing number in the set without sorting. How to find if two numbers are missing in the set? [fn:26]
+  4. [X] Had a phone interview with Bloomberg. 
+         Asked about my projects and my contribution to each of them. How to sort numbers between 1 and 10000. How will you sort if there are 10000 numbers between 1 and 50000. 
+         Which sort do you prefer for linked list and array list. Again asked about my projects. Any questions? done with the phone interview. No Coding part. [fn:27]
+  5. [X] In browsers caching of web links that a user clicks is done. 
+         The recent url that user clicks on should come to the top of the list. 
+         How to implement hash table for it? [fn:28]
+
+         IMO: Same as LRU cache. 
+         
+  6. [ ] Assume you daily prices of a stock 
+         
+         3 7 4 10 11 8 5 4 8 yadda yadda 
+         You can only buy 1 share or sell 1 share a day, but you can only sell if you own the stock. You can't hold more than 1 share. write me an algo that finds me the 
+         strategy that has the highest pay off. 
+         Don't want the generate all possible strategies and compare. [fn:29]
+  7. [ ] What is wrong, if anything, with the two implementations of populate. [fn:30]
+         #+begin_example
+          void populate(char **s);
+
+          int main() {
+                  char *s;
+                  populate(&s);
+                  printf("%s", s);	// should print "Prasad"
+                  free(s);
+                  return 0;
+          }
+
+          void populate(char **str) {
+                  // 1. The next two lines is one implementation
+                  *str = (char *)malloc(sizeof(char) * 7);
+                  strcpy(*str, "Prasad");
+
+                  // 2. This line seperately is another implementation
+                  *str = "Prasad";
+          }
+         #+end_example
+  8. [ ] What are uses of Btree, AVL and RBtree(individual applications as i explained that we use them whenever we need balanced BST and he wasnt convinced) 
+         When would you specifically use Btree over AVL tree. 
+         Which one out of balanced BST is most efficient(for which i answered Btree for large values of n) and he asked why dont we always use Btree then? [fn:31]
+  9. [ ] Design a phonebook dictionary which on input any characters gives names and phone number of all the matching names(prefix) [fn:32]
+
+         For instance 
+         Rihana 233222232 
+         Ricky 134242444 
+         Peter 224323423 
+         Ron 988232323 
+
+         If you give R as input it should list 
+         Rihana Ricky and Ron which their contact numbers 
+
+
+         If you give ri as input it should list 
+         Rihana, Ricky which their contact numbers
+  10. [ ] If have unlimited memory, how can we achieve concurrency between threads without using locks? [fn:33]
+  11. [ ] Find max depth of a binary tree [fn:34]
+  12. [ ] Disadvantages of locks? What is Deadlock? What is Starvation? [fn:35]
+  13. [ ] How would a mutex lock be implemented by the system? [fn:36]
+  14. [ ] How is mutual exclusion done in C++? [fn:37]
+  15. [ ] How would you implement Garbage Collection in C++? [fn:38]
+  16. [ ] A solution takes 8 hours to do n independent jobs. What will you do to improvise?  [fn:39]
+          Follow up: Improvise on a single processor 
+          Follow up: If N task work uses shared memory
+  17. [ ] How to design Hash map using array. [fn:40]
+  18. [ ] Design a database for storing record of students. [fn:41]
+  19. [ ] Develop and algorithm to reverse a string keeping words intact. [fn:42]
+          Example: This is a question 
+          result should be: question a is This
+  20. [ ] Develop an Algorithm to implement queue using stack [fn:43]
+  21. [ ] a. How does OS detects a device on boot up, how does it gets to know whether it is working or faulty? 
+          b. How does the device driver initialize this device (initialization, registration etc)? [fn:44]
+  22. [ ] What is pass by value and pass by reference? [fn:45]
+          a. Can a structure be passed by value? => Yes. Copy all the internal data.
+          b. Can an array be passed by value?    => Yes. But we need to copy all the data with high overhead. 
+  23. [ ] How will you implement a T9 dictionary? (requiring only 1 look up, no partial searches meaning one keys in a name and then presses go to find it) [fn:46]
+  24. [ ] How will you tell whether a given number is a palindrome? [fn:47]
+
+          Edit: The question was for a string actually.
+  25. [ ] How will you reverse a given number? (not using "/", "&" operators) [fn:48]
+          
+          For eg 756 - > 657
+  26. [ ] How many sockets can you have? [fn:49]
+          
+          => A process can open as many sockets as allowable file descriptors which is configured at os configuration.
+
+          what will a server do after getting a request from a client?
+  27. [ ] multicast VS broadcast [fn:50]
+  28. [ ] Implement a deque. [fn:51]
+  29. [ ] Write atoi() function. [fn:52]
+  30. [ ] what is bus error? common causes of bus errors? [fn:53]
+          
+          Possible answers:
+          1) Bus Error is when you try to access a memory location using a pointer that isn't aligned properly.
+          2) Hardware problems
+          
 * Other Questions [0/2]
   - [ ] Least commond ancestor
   - [ ] All sorting algorithms
@@ -316,3 +510,63 @@
 [fn:22] http://www.careercup.com/question?id=16585677
 
 [fn:23] http://www.careercup.com/question?id=16594681
+
+[fn:24] http://www.careercup.com/question?id=16586686
+
+[fn:25] http://www.careercup.com/question?id=16234739
+
+[fn:26] http://www.careercup.com/question?id=16171686
+
+[fn:27] http://www.careercup.com/question?id=16049683
+
+[fn:28] http://www.careercup.com/question?id=16251663
+
+[fn:29] http://www.careercup.com/question?id=15856707
+
+[fn:30] http://www.careercup.com/question?id=15419803
+
+[fn:31] http://www.careercup.com/question?id=15434773
+
+[fn:32] http://www.careercup.com/question?id=15423772
+
+[fn:33] http://www.careercup.com/question?id=15432683
+
+[fn:34] http://www.careercup.com/question?id=15419690
+
+[fn:35] http://www.careercup.com/question?id=15432682
+
+[fn:36] http://www.careercup.com/question?id=15434681
+
+[fn:37] http://www.careercup.com/question?id=15416685
+
+[fn:38] http://www.careercup.com/question?id=15421683
+
+[fn:39] http://www.careercup.com/question?id=15287664
+
+[fn:40] http://www.careercup.com/question?id=15192942
+
+[fn:41] http://www.careercup.com/question?id=15289779
+
+[fn:42] http://www.careercup.com/question?id=15304663
+
+[fn:43] http://www.careercup.com/question?id=15294784
+
+[fn:44] http://www.careercup.com/question?id=15258753
+
+[fn:45] http://www.careercup.com/question?id=15259770
+
+[fn:46] http://www.careercup.com/question?id=15206845
+
+[fn:47] http://www.careercup.com/question?id=15206843
+
+[fn:48] http://www.careercup.com/question?id=15258752
+
+[fn:49] http://www.careercup.com/question?id=13870766
+
+[fn:50] http://www.careercup.com/question?id=13874753
+
+[fn:51] http://www.careercup.com/question?id=13872745
+
+[fn:52] http://www.careercup.com/question?id=13874752
+
+[fn:53] http://www.careercup.com/question?id=13871739

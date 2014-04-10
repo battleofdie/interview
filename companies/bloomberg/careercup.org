@@ -1,4 +1,4 @@
-* Questions [12/30]
+* Questions Set 1 [25/29]
   1. [X] Write a program to accept a nonempty string of alphanumeric characters. Define a “run” as a 
          consecutive sequence of a single character. For example, “aaaa” is a run of length 4. The program will 
          print the longest run in the given string. If there is no single longest run, then you may print any of 
@@ -84,9 +84,16 @@
           What happens P3(p1) (copy const)?
   13. [ ] Picture a restaurant kitchen with tickets of customer’s orders which has a start time, end time of when the order was completed, and price. How would you find the longest 
           contiguous time that tickets were processed within a given day? [fn:7]
+          
+          <Answer>
+          1) We can do it in O(n), since there is only 24*2600, (i.e., 62400), seconds in a day. Create vector<bool> time(62400, false) for a day. 
+             Mark it's slot with true or false based on the order list; Iterate time to get the longest contiguous time; (Maybe not perfect!)
+          2) [ ]
+
+          </Answer>
   14. [ ] Websites like Pandora recommend music based on user preferences. What kind of information would you need in such a design? [fn:8]
   15. [ ] Given an integer, print out all the prime numbers smaller than that integer. [fn:9]
-  16. [ ] Given a binary tree, find out the maximum sum of value from root to each leaf. [fn:10]
+  16. [X] Given a binary tree, find out the maximum sum of value from root to each leaf. [fn:10]
           #+begin_example
           find_Max(Node *root){
               if (root==null)
@@ -95,8 +102,10 @@
                   return max((find_Max(root->left), find_Max(root->right))+root->value;
           }
           #+end_example
-  17. [ ] Find the largest k numbers in an enormous array of numbers. You cannot sort the array. Give the run time of the algorithm. [fn:11]
-  18. [ ] Given an integer N, print numbers from 1 to N in lexicographic order. [fn:12]
+  17. [X] Find the largest k numbers in an enormous array of numbers. You cannot sort the array. Give the run time of the algorithm. [fn:11]
+
+          Top k, use min-heap should be sufficient. 
+  18. [X] Given an integer N, print numbers from 1 to N in lexicographic order. [fn:12]
           Details: To be implemented without using character conversion (or Strings). 
 
           Example: 
@@ -120,9 +129,41 @@
           7 
           8 
           9 
+          #+begin_example
+              #include <iostream>
+              using namespace std;
 
-  19. [ ] What are virtual constructors and virtual destructors? [fn:13]
-  20. [ ] In code there is a breakpoint at the first line of main function. The program is executed but it crashes without touching the breakpoint. Is there any code that is executed 
+              void Test(int N, int k) 
+              { 
+                  if (k > N) {return;} 
+
+                  for(int j = 0; j<10; j++) 
+                  { 
+                      if (k <= N) 
+                      { 
+                          cout<<k<<endl; 
+
+                          k *= 10; 
+
+                          Test(N, k); 
+
+                          k /= 10; 
+                          k++; 
+                          if (k%10 == 0) return; 
+                      } 
+                  } 
+              } 
+
+              int main(int argc, char *argv[])
+              {
+                  Test(25, 1);
+                  return 0;
+              }
+          #+end_example
+  19. [X] What are virtual constructors and virtual destructors? [fn:13]
+          
+          It seems that there is no virtual constructors. Virtual destructors can deconstruct memory allocated by parrent/base class correctly.
+  20. [X] In code there is a breakpoint at the first line of main function. The program is executed but it crashes without touching the breakpoint. Is there any code that is executed 
           before main itself. [fn:14]
           #+begin_example
           int funky()
@@ -137,36 +178,93 @@
               return 0;
           }
           #+end_example
-  21. [ ] Given historical data for the stocks of a company for say 8 day. you can buy and sell the stocks just once. Find the maximum profit you can make: [fn:15]
+  21. [X] Given historical data for the stocks of a company for say 8 day. you can buy and sell the stocks just once. Find the maximum profit you can make: [fn:15]
           |-----+---+---+---+---+---+---+---+---|
           | Day | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
           |-----+---+---+---+---+---+---+---+---|
           | N/A | 5 | 9 | 6 | 2 | 4 | 8 | 3 | 1 |
           |-----+---+---+---+---+---+---+---+---|
-  22. [ ] Given a string 'aabbcdccefff', find the first Non-duplicate character i.e. 'd'. [fn:16]
-  23. [ ] Q: If you have all the companies that are traded, and live inputs are coming of which company is being traded and what is the volume, how do you maintain the data, so that 
+
+          Easy question.
+          #+begin_example
+          #include <iostream>
+          #include <map>
+          #include <limits>
+          #include <vector>
+
+          using namespace std;
+
+          int max_profit(vector<int>& input)
+          {
+              int min = numeric_limits<int>::max();
+              int profit = 0;
+    
+              for(const auto e: input)
+              {
+                  if(e < min)
+                  min = e;
+
+                  if(e - min > profit) 
+                  profit = e - min;
+              }
+
+              return profit;
+          }
+
+          int main(int argc, char *argv[])
+          {
+              vector<int> stocks = {5, 9, 6, 2, 4, 8, 3, 1};
+
+              cout << max_profit(stocks) << endl;
+              return 0;
+          }
+
+          // compile with: g++ -std=c++11  FILE_NAME
+          #+end_example
+  22. [X] Given a string 'aabbcdccefff', find the first Non-duplicate character i.e. 'd'. [fn:16]
+          
+          It's Trivial if we can use hash table.
+  23. [X] Q: If you have all the companies that are traded, and live inputs are coming of which company is being traded and what is the volume, how do you maintain the data, so that 
           you can carry out operation of giving the top 10 most traded companies by volume of shares most efficiently.  [fn:17]
-          A: I juggled between Hash Map and Max Heap. I said Max Heap, since I can take out top 10 companies in a jiffy with a Max Heap. But then he asked you will need to find a company everytime there is a trade, which will take quite some time in Heap. He pointed out that in real world scenario, number of trades happening, and hence searching of the company and updating it, will be many times more than finding top 10. Which bought me to HashMap. Updations can happen in Real time, while finding top 10 can be done in O(n) or O(nlog(n)) time. 
-          Even that wasn't optimal obviously. The interviewer was very nice and friendly type guy. He stressed that at every trade, at most, only 1 company will change in my top 10. This hit me and got me to the correct answer that we keep all actual data in HashMap, but also maintain a MinHeap of 10 most traded company.
-  24. [ ] Q: If I give you a new book, and ask you to create the index which is found at the end of the book, how will you do it. [fn:18]
+          A: I juggled between Hash Map and Max Heap. I said Max Heap, since I can take out top 10 companies in a jiffy with a Max Heap. But then he asked you will need to find a company 
+          everytime there is a trade, which will take quite some time in Heap. He pointed out that in real world scenario, number of trades happening, and hence searching of the company and 
+          updating it, will be many times more than finding top 10. Which bought me to HashMap. Updations can happen in Real time, while finding top 10 can be done in O(n) or O(nlog(n)) time. 
+          Even that wasn't optimal obviously. The interviewer was very nice and friendly type guy. He stressed that at every trade, at most, only 1 company will change in my top 10. This 
+          hit me and got me to the correct answer that we keep all actual data in HashMap, but also maintain a MinHeap of 10 most traded company.
+  24. [X] Q: If I give you a new book, and ask you to create the index which is found at the end of the book, how will you do it. [fn:18]
           A: I said for constant addition time of words (and page numbers) in the data structure, we can use Hashmap or TRIE. But 
           since output has to be in alphabetic order, we will use a Trie DS, where at the end of each word, we simple store a list of page numbers.
-  25. [ ] Q: The New operator...how does it work, what are the steps? [fn:19]
+
+          What is [[http://en.wikipedia.org/wiki/Trie][Trie]]:
+          #+begin_example
+          In computer science, a trie, also called digital tree and sometimes radix tree or prefix tree (as they can be searched by prefixes), is an ordered tree data structure that is used 
+          to store a dynamic set or associative array where the keys are usually strings. Unlike a binary search tree, no node in the tree stores the key associated with that node; 
+          instead, its position in the tree defines the key with which it is associated. All the descendants of a node have a common prefix of the string associated with that node, and 
+          the root is associated with the empty string. Values are normally not associated with every node, only with leaves and some inner nodes that correspond to keys of interest. For 
+          the space-optimized presentation of prefix tree, see compact prefix tree.
+          #+end_example
+  25. [X] Q: The New operator...how does it work, what are the steps? [fn:19]
           A: I just said it creates a new memory in the heap and the reference points to it. He seemed satisfied.
-  26. [ ] Q: Do you know what is a Binary tree? How would you go about coding for addition of a new element to Binary tree? [fn:20]
+          
+          Note that it also does some other CONSTRUCT stuff!
+  26. [X] Q: Do you know what is a Binary tree? How would you go about coding for addition of a new element to Binary tree? [fn:20]
           A: I asked if they want a Binary Tree or a BST? When he said BST I just said we can have a recursive function in which we pass the root of the tree and see if the value to be 
           added is smaller or bigger than the root, and depending on result, we go to left or right of the tree, assuming the left (or right) is not null. If null, just use new to create 
           a memory location, put the value, and use the left reference of the root to link to this new memory. Simple basic stuff.
-  27. [ ] Q: Do you know what is a stack? Explain [fn:21]
+  27. [X] Q: Do you know what is a stack? Explain [fn:21]
           A: Yes, explained LIFO push pop peek 
           Q: In stack, Push and Pop are constant. What will you do if you want an operation which gives the min of the stack also in constant time? 
           A: Question is straight out of Gayle's Book. You just maintain a new stack of minimum number till that point.
-  28. [ ] 3 Baskets, with label Apple Orange and Mixed. All the lables are incorrect. Pick up one fruit from one of the 3 baskets and find the correct labels for these 3 baskets.[fn:22]
+  28. [X] 3 Baskets, with label Apple Orange and Mixed. All the lables are incorrect. Pick up one fruit from one of the 3 baskets and find the correct labels for these 3 baskets.[fn:22]
   29. [X] How to find a missing value in an size N unsorted array (value from 0 to N but missing one of them). [fn:23]
           <Answer>
           1) n*(n-1)/2 - sum(input), but it might overflow
           2) XOR every elements in input and 0:N; return the result; this method can avoid overflow.
           </Answer>
+
+* Question Set 2 [0/1]
+  1. [ ] xxx
+
 * Other Questions [0/2]
   - [ ] Least commond ancestor
   - [ ] All sorting algorithms

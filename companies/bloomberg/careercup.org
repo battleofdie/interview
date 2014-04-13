@@ -350,9 +350,9 @@
           2) XOR every elements in input and 0:N; return the result; this method can avoid overflow.
           </Answer>
 
-* Question Set 2 [5/30]
+* Question Set 2 [20/30]
   1. [X] Difference between C++ and Java [fn:24]
-
+         
          Knowledge:
          1) c++ supports multiple inheritance, but java doesn't support directly. 
          2) Programmer responsible for memory management in C++, but JVM will take care of it by GC 
@@ -374,13 +374,13 @@
 
          IMO: Same as LRU cache. 
          
-  6. [ ] Assume you daily prices of a stock 
+  6. [X] Assume you daily prices of a stock 
          
          3 7 4 10 11 8 5 4 8 yadda yadda 
          You can only buy 1 share or sell 1 share a day, but you can only sell if you own the stock. You can't hold more than 1 share. write me an algo that finds me the 
          strategy that has the highest pay off. 
-         Don't want the generate all possible strategies and compare. [fn:29]
-  7. [ ] What is wrong, if anything, with the two implementations of populate. [fn:30]
+         Don't want the idea of generating all possible strategies and compare. [fn:29]
+  7. [X] What is wrong, if anything, with the two implementations of populate. [fn:30]
          #+begin_example
           void populate(char **s);
 
@@ -401,10 +401,26 @@
                   *str = "Prasad";
           }
          #+end_example
-  8. [ ] What are uses of Btree, AVL and RBtree(individual applications as i explained that we use them whenever we need balanced BST and he wasnt convinced) 
+
+          Can not free s in the second implementation.
+  8. [X] What are uses of Btree, AVL and RBtree(individual applications as I explained that we use them whenever we need balanced BST and he wasn't convinced) 
          When would you specifically use Btree over AVL tree. 
          Which one out of balanced BST is most efficient(for which i answered Btree for large values of n) and he asked why dont we always use Btree then? [fn:31]
-  9. [ ] Design a phonebook dictionary which on input any characters gives names and phone number of all the matching names(prefix) [fn:32]
+         
+         Notes:
+         Binary Search trees do not need to be balanced, so depending on the order of insertions the tree can become unbalanced quickly and search times could potentially vary a lot. This is the
+         most basic search tree, and inserts and deletes have very simple logic. 
+
+         AVL trees are always at the optimal balance point, but can slow down inserts and deletes because they never allow that tree height to be outside the -1 to 1 range. But you will have 
+         the fastest look times. 
+
+         Red black trees are also self balancing but can become slightly imbalanced to improve insert and delete times, with a small potential hit to search times. 
+
+         So if a system updates the tree often I would lean toward using a red black tree, and if the tree is updated very rarely then a AVL tree would be the better direction. 
+
+         If the data will come in a "controlled manner" that we will not likely have a large imbalance than a BST could be an option but it would still be good to look at one of the 
+         self balancing tree structures.
+  9. [X] Design a phonebook dictionary which on input any characters gives names and phone number of all the matching names(prefix) [fn:32]
 
          For instance 
          Rihana 233222232 
@@ -413,39 +429,165 @@
          Ron 988232323 
 
          If you give R as input it should list 
-         Rihana Ricky and Ron which their contact numbers 
-
+         Rihana Ricky and Ron with their contact numbers 
 
          If you give ri as input it should list 
-         Rihana, Ricky which their contact numbers
+         Rihana, Ricky with their contact numbers
+
+         Trie or compact trie, i.e., radix tree.
   10. [ ] If have unlimited memory, how can we achieve concurrency between threads without using locks? [fn:33]
-  11. [ ] Find max depth of a binary tree [fn:34]
-  12. [ ] Disadvantages of locks? What is Deadlock? What is Starvation? [fn:35]
+  11. [X] Find max depth of a binary tree [fn:34]
+  12. [X] Disadvantages of locks? What is Deadlock? What is Starvation? [fn:35]
+          
+          Notes:
+          1) It decrease the performance since threads have to acquire and release locks;
+          2) It may cause Deadlock;
+          3) It may cause starvation;
   13. [ ] How would a mutex lock be implemented by the system? [fn:36]
   14. [ ] How is mutual exclusion done in C++? [fn:37]
   15. [ ] How would you implement Garbage Collection in C++? [fn:38]
   16. [ ] A solution takes 8 hours to do n independent jobs. What will you do to improvise?  [fn:39]
           Follow up: Improvise on a single processor 
           Follow up: If N task work uses shared memory
-  17. [ ] How to design Hash map using array. [fn:40]
-  18. [ ] Design a database for storing record of students. [fn:41]
-  19. [ ] Develop and algorithm to reverse a string keeping words intact. [fn:42]
+  17. [X] How to design Hash map using array. [fn:40]
+  18. [X] Design a database for storing record of students. [fn:41]
+  19. [X] Develop and algorithm to reverse a string keeping words intact. [fn:42]
           Example: This is a question 
           result should be: question a is This
-  20. [ ] Develop an Algorithm to implement queue using stack [fn:43]
+
+          Notes:
+          1) Use stack
+          2) Do it in place
+  20. [X] Develop an Algorithm to implement queue using stack [fn:43]
+          
+          Notes:
+          Use too stacks, easy!
   21. [ ] a. How does OS detects a device on boot up, how does it gets to know whether it is working or faulty? 
           b. How does the device driver initialize this device (initialization, registration etc)? [fn:44]
-  22. [ ] What is pass by value and pass by reference? [fn:45]
-          a. Can a structure be passed by value? => Yes. Copy all the internal data.
+  22. [X] What is *pass by value* and *pass by reference*? [fn:45]
+          a. Can a structure/class be passed by value? => Yes. Copy all the internal data.
           b. Can an array be passed by value?    => Yes. But we need to copy all the data with high overhead. 
-  23. [ ] How will you implement a T9 dictionary? (requiring only 1 look up, no partial searches meaning one keys in a name and then presses go to find it) [fn:46]
-  24. [ ] How will you tell whether a given number is a palindrome? [fn:47]
+  23. [ ] How will you implement a T9 dictionary? (requiring only 1 look up, no partial searches meaning one keys in a 
+          name and then presses go to find it) [fn:46]
+  24. [X] How will you tell whether a given number is a palindrome? [fn:47]
 
           Edit: The question was for a string actually.
-  25. [ ] How will you reverse a given number? (not using "/", "&" operators) [fn:48]
+          #+begin_example
+          // Solution without using extra space
+          class Solution {
+          public:
+              bool isPalindrome(int x) {
+                  // Note: The Solution object is instantiated only once and is reused by each test case.
+                  // was based on wrong assumption, -1 is not palindromes
+
+                  // from both ends
+
+                  if(x < 0) return false;
+
+                  int div = 1;
+                  while(x / div >= 10) div *= 10;
+
+                  while(x != 0)
+                  {
+                      int l = x / div;
+                      int r = x % 10;
+
+                      if(l != r) return false;
+                      x = (x % div) / 10;
+
+                      div /= 100;
+                  }
+
+                  return true;
+              }
+          };
+          #+end_example
+          
+          Yet another recursive solution.
+          #+begin_example
+          class Solution {
+          public:
+              bool isPalindrome(int x) {
+                  // Note: The Solution object is instantiated only once and is reused by each test case.
+                  // was based on wrong assumption, -1 is not palindromes
+                  return isPalindrome(x, x);
+              }
+
+              bool isPalindrome(int x, int& y)
+              {
+                  if(x < 0) return false;
+                  if(x == 0) return true;
+
+                  if(!isPalindrome(x/10, y) || (x % 10 != y % 10)) 
+                      return false;
+
+                  y /= 10;
+                  return true;
+              }
+          };
+          #+end_example
+  25. [X] How will you reverse a given number? (not using "/", "&" operators) [fn:48]
           
           For eg 756 - > 657
-  26. [ ] How many sockets can you have? [fn:49]
+
+          Notes: But we can use "+", "*" and "-". Here is one example:
+          #+begin_example
+          #include <iostream>
+          #include <cstdlib>
+          #include <climits>
+
+
+          using namespace std;
+
+          class Solution {
+          public:
+
+              /** 
+               * Reverse positive integer
+               * 
+               * @param x integer
+               * 
+               * @return reversed integer
+               */
+              int reverse(int x) {
+                  // Note: The Solution object is instantiated only once and is reused by each test case.
+                  int result = 0, prev_base = 1, base = 10;
+                  while(x >= prev_base)
+                  {
+                      // extract last digit
+                      int ld = x % base, d = 0;
+                      while(ld >= 0)
+                      {
+                          d++;
+                          ld -= prev_base;
+                      }
+
+                      d--;
+
+                      // bound checking
+                      if(result > 0 && result > (INT_MAX - d)/10) return INT_MAX;
+                      if(result < 0 && result < (INT_MIN - d)/10) return INT_MIN;
+
+                      // done
+                      result = result*10 + d;
+
+                      prev_base = base;
+                      base *= 10;
+                  }
+
+                  return result;
+              }
+          };
+
+          int main(int argc, char *argv[])
+          {
+              Solution slt;
+
+              cout << slt.reverse(atoi(argv[1])) << endl;
+              return 0;
+          }
+          #+end_example
+  26. [X] How many sockets can you have? [fn:49]
           
           => A process can open as many sockets as allowable file descriptors which is configured at os configuration.
 
@@ -453,16 +595,19 @@
   27. [ ] multicast VS broadcast [fn:50]
   28. [ ] Implement a deque. [fn:51]
   29. [ ] Write atoi() function. [fn:52]
-  30. [ ] what is bus error? common causes of bus errors? [fn:53]
+  30. [X] what is bus error? common causes of bus errors? [fn:53]
           
           Possible answers:
           1) Bus Error is when you try to access a memory location using a pointer that isn't aligned properly.
           2) Hardware problems
           
-* Other Questions [0/2]
+* Other Questions [0/6]
   - [ ] Least commond ancestor
   - [ ] All sorting algorithms
-
+  - [ ] Concurrency, multithreads, system.
+  - [ ] cc150
+  - [ ] leetcode
+  - [ ] design
 * Footnotes
 
 [fn:1] http://en.wikipedia.org/wiki/External_sorting

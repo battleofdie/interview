@@ -1,19 +1,42 @@
+// alternative
 class Solution {
 public:
     int maxSubArray(int A[], int n) {
         // Note: The Solution object is instantiated only once and is reused by each test case.
-     int max = INT_MIN, sum = 0, maximum = INT_MIN;
-     for(int i=0; i<n; i++)
-     {
-        if(A[i] > maximum) maximum = A[i];
+        int sum = 0, max = INT_MIN;
+            
+        for(int i=0; i<n; i++)
+        {
+            sum += A[i];
+            
+            if(sum > max) max = sum;
+                
+            // rewind
+            if(sum < 0) sum = 0;
+        }
+            
+        return max;
+    }
+};
+
+
+// alternative
+class Solution {
+public:
+    int maxSubArray(int A[], int n) {
+        // Note: The Solution object is instantiated only once and is reused by each test case.
+        int max = INT_MIN, sum = 0, maximum = INT_MIN;
+        for(int i=0; i<n; i++)
+        {
+            if(A[i] > maximum) maximum = A[i];
         
-        sum += A[i];
-        if(sum < 0) sum = 0; // rewind
+            sum += A[i];
+            if(sum < 0) sum = 0; // rewind
         
-        if(sum > max) max = sum;
-     }
+            if(sum > max) max = sum;
+        }
      
-     return (maximum < 0 ? maximum : max);
+        return (maximum < 0 ? maximum : max);
     }
 };
 
@@ -42,3 +65,4 @@ public:
         return max > m ? max : m;
     }
 };
+

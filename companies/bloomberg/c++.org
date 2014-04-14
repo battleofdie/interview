@@ -1,0 +1,234 @@
+* Bloomberg C++ interview questions [fn:1]
+** DONE Why c++ 
+   1) If it's memory intensive [fn:2]
+   2) If it's CPU intensive (Java is OK if it's IO intensive, like Hadoop DFS and Map-Reduce framework) [fn:2]
+   3) Better support for functional programming style?
+   4) Better support for generic programming, like meta template programming?
+   5) C++ is faster, lot of game engines are using C++. (Frosbite[fn:3])?
+   6) Direct interfacing with C libs and OS routines?
+** DONE Abstraction, encapsulate, polymophysim, inheritance
+   + Abstraction: A result of encapsulation. The program designer worries about how to implement certain functionalities while the user only needs to know interface and think 
+     abstractly about the the type;
+   + Encapsulation: Containing and hiding detailed Information about an object, such as internal data structures and implementation. Encapsulation isolates the internal complexity 
+     of an object's operation from the rest of the application. e.g. function/class are both encapsulated entities, vector vs array;
+   + Polymophysim
+     - Polymorphism refers to type-specific behavior in an inheritance hierarchy, i.e., which virtual function to call is determined by the dynamic type of the class object. 
+       Note that polymorphism applies only to references and pointers to types related by inheritance;
+     - To implement polymorphism we need to determine when it is needed. Then, we define an inheritance hierarchy. In the classes in this hierarchy, we define virtual 
+       functions corresponding to the polymorphic behavior we want.
+   + Inheritance
+     To establish a subtype from an existing object/type. It is a way of reuse the code. In C++, objects are represented by classes, a subclass can inherit the code and structure 
+     from the base class. All classes and the relationship constitute a inheritance hierarchy.
+** DONE class
+   A bundle of data structures and functions operate on these data. Instances of these datatypes are known as objects and can contain member variables, constants, 
+   member functions, and overloaded operators defined by the programmer
+** DONE default constructor
+   A constructor generated in the absence of any explicit constructors
+
+** DONE concerns when writing a "copy constructor"?
+   + When you should write a copy constructor? shallow (vs deep) copy needed?
+   + What others to write if you need to write a copy constructor? dtor, ator
+   + When copy constructors are invoked? 
+     For class Animal
+     - Init an object from another of the same type ==> Animal b(a);
+     - Pass an object to a function parameter       ==> b.compareAge(a)
+     - Return an object from an function            ==> Animal a; return a;
+     - Initialize elements in a sequential container   ==> Animal a[ 10 ]; 
+     - Initialize elements in an array from a list of initializers   ==> copy(a, a+10, b.begin());
+
+** DONE concerns when writing an operator assignment
+   - When is it needed?
+   - No self-assignment
+   - Free memory when a pointer (or similar) is assigned to another object
+** DONE Can constructor be virtual? why it can or can not? how about destructor.
+   + Virtual constructor: no. C++ does not support it, Stroustrup said, when we instanciate a class, we should already know how to construct it.
+   + Virtual destructor: yes. In order to support polymorphism.
+         - You can then delete an instance of a derived class through a pointer to base class
+         - Always make base classes' destructors virtual when they're meant to be manipulated polymorphically
+         - If you want to prevent the deletion of an instance through a base class pointer, you can make the base class destructor protected and non-virtual. 
+           By doing so, the compiler won't let you call delete on a base class pointer
+
+** DONE what's the default functions of class
+   - default ctor, copy ctor, ator, dtor
+** DONE What's the size of empty class
+  - Quoting Bjarne Stroustrup's C++ Style and Technique FAQ, the reason the size is non-zero is "To ensure that the addresses of two different objects will be different." And the size can 
+    be 1 because alignment doesn't matter here, as there is nothing to actually look at.
+** DONE what's the difference of class and struct
+  - Member of a class defined with the keyword class are private by default. Members of a class defined with the keywords struct or union are public by default.
+  - In absence of an access-specifier for a base class, public is assumed when the derived class is declared struct and private is assumed when the class is declared class.
+** DONE Deep copy & shallow copy
+   - Bitwise copy
+   - copy internal data structures
+** DONE Auto pointer(smart pointer)
+   A smart pointer is a class that wraps a "bare" C++ pointer, to manage the lifetime of the object being pointed to.
+
+    With "bare" C++ pointers, the programmer has to explicitly destroy the object when it is no longer useful.
+    #+begin_example
+    // Need to create the object to achieve some goal
+    MyObject* ptr = new MyObject(); 
+    ptr->DoSomething();// Use the object in some way.
+    delete ptr; // Destroy the object. Done with it.
+    // Wait, what if DoSomething() raises an exception....
+    A smart pointer by comparison defines a policy as to when the object is destroyed. You still have to create the object, but you no longer have to worry about destroying it.
+
+    SomeSmartPtr<MyObject> ptr(new MyObject());
+    ptr->DoSomething(); // Use the object in some way.
+
+    // Destruction of the object happens, depending 
+    // on the policy the smart pointer class uses.
+
+    // Destruction would happen even if DoSomething() 
+    // raises an exception
+    The simplest policy in use involves the scope of the smart pointer wrapper object, such as implemented by boost::scoped_ptr or std::unique_ptr.
+
+    void f()
+    {
+        {
+           boost::scoped_ptr<MyObject> ptr(new MyObject());
+           ptr->DoSomethingUseful();
+        } // boost::scopted_ptr goes out of scope -- 
+          // the MyObject is automatically destroyed.
+
+        // ptr->Oops(); // Compile error: "ptr" not defined
+                        // since it is no longer in scope.
+    }
+    Note that scoped_ptr instances cannot be copied. This prevents the pointer from being deleted multiple times (incorrectly). You can however pass references to it around to other functions you call.
+
+    Scoped pointers are useful when you want to tie the lifetime of the object to a particular block of code, or if you embedded it as member data inside another object, the lifetime of that other object. The object exists until the containing block of code is exitted, or until the containing object is itself destroyed.
+
+    A more complex smart pointer policy involves reference counting the pointer. This does allow the pointer to be copied. When the last "reference" to the object is destroyed, the object is deleted. This policy is implemented by boost::shared_ptr and std::shared_ptr.
+
+    void f()
+    {
+        typedef std::tr1::shared_ptr<MyObject> MyObjectPtr; // Nice short alias.
+        MyObjectPtr p1; // Empty
+        {
+            MyObjectPtr p2(new MyObject());
+            // There is now one "reference" to the created object
+            p1=p2; // Copy the pointer.
+            // There are now two references to the object.
+        } // p2 is destroyed, leaving one reference to the object.
+    } // p1 is destroyed, leaving a reference count of zero. 
+      // The object is deleted.
+    Reference counted pointers are very useful when the lifetime of your object is much more complicated, and is not tied directly to a particular section of code or to another object.
+
+    There is one drawback to reference counted pointers — the possibility of creating a dangling reference.
+
+    // Create the smart pointer on the heap
+    MyObjectPtr* pp = new MyObjectPtr(new MyObject())
+    // Hmm, we forgot to destroy the smart pointer,
+    // because of that, the object is never destroyed!
+    Another possibility is creating circular references.
+
+    struct Owner {
+       boost::shared_ptr<Owner> other;
+    };
+
+    boost::shared_ptr<Owner> p1 (new Owner());
+    boost::shared_ptr<Owner> p2 (new Owner());
+    p1->other = p2; // p1 references p2
+    p2->other = p1; // p2 references p1
+
+    // Oops, the reference count of of p1 and p2 never goes to zero!
+    // The objects are never destroyed!
+    To work around this problem, both boost and C++11 define weak_ptr to define a weak (uncounted) reference to a shared_ptr.
+
+    Also note that the existing standard C++ library does define a special kind of smart pointer std::auto_ptr. It is very much like a scoped pointer, except that it also has the "special" dangerous ability to be copied — which also unexpectedly transfers ownership!
+
+    std::auto_ptr<MyObject> p1 (new MyObject());
+    std::auto_ptr<MyObject> p2 = p1; // Copy and transfer ownership. 
+                                     // p1 gets set to empty!
+    p2->DoSomething(); // Works.
+    p1->DoSomething(); // Oh oh. Hopefully raises some NULL pointer exception.
+    #+end_example
+
+** DONE What's the difference of new & malloc
+   - 'new' will throw exception(bad_alloc) whenever error occurs;
+   - 'new' will call constructor of a class or struct; 
+   - 'new' can only be 'delete' while 'malloc' can only be 'free'; Not true?
+   - We can use free and placement new to call the constructor [fn:5]
+** DONE what happens when new/malloc fails
+   - The new operator, and new[] operator should throw std::bad\_alloc, but this is not always the case as the behavior can be sometimes overridden
+     - One can use std::set\_new\_handler and suddenly something entirely different can happen than throwing std::bad\_alloc. Although the standard requires that the user either 
+       make memory available, abort, or throw std::bad\_alloc. But of course this may not be the case
+** DONE What's the abstract class
+   - When a class contains a pure virtual function
+** DONE What's the pure virtual function
+   - virtual int foo() = 0;
+** DONE How to print "hello world" before main()
+   #+begin_example
+   #include <iostream>
+   
+   using namespace std;
+   
+   int funky()
+   {
+       cout << "Hello world!" << endl;
+       return 0;
+   }
+
+   int x = funky();
+
+   int main(int argc, char* argv[])
+   {
+       return 0;
+   }
+   #+end_example
+** DONE Inheritance; what can be inherited, what cannot be?
+   - ctors, copy constructors cannot be inherited
+** DONE class a array[ 50], how to initialize these elements without a loop, you can use dynamic memory allocation
+   #+begin_example
+   #include <iostream>
+   #include <vector>
+   #include <algorithm>
+   #include <iterator>
+   using namespace std;
+
+   class Foo{
+   public:
+     //vector<int> arr;
+     int *arr;
+     Foo(): arr(new int[50]()) { fill_n(arr, 50, 1); }
+   };
+
+   int main()
+   { 
+     Foo f;
+     copy(f.arr, f.arr+50, ostream_iterator<int>(cout," ")); cout << endl;
+   }
+   #+end_example
+** DONE static
+   - static functions are functions that are only visible to other functions in the same file? ==> Not complete
+** DONE What's the difference of reference & pointer [fn:6]
+   - A pointer can be re-assigned any number of times while a reference can not be reassigned after initialization.
+   - A pointer can point to NULL while reference can never point to NULL
+   - You can't take the address of a reference like you can with pointers
+   - There's no "reference arithmetics" (but you can take the address of an object pointed by a reference and do pointer arithmetics on it as in &obj + 5).
+   - etc.
+** TODO Describe virtual table [fn:4]
+   - For polymorphism? Use base class pointers; It's determined at run time but not compile time; Dynamic dispatch;
+   - More stuff!!!!
+** DONE What's the difference of passing by reference & passing by value
+** DONE Type cast [fn:7]
+   - dynamic_ast ==> type safe
+   - static_cast ==> explicit cast
+   - reinterpret_cast  ==> any type
+   - typeid  ==> get the type of an object
+   - C style cast  ==> more like static_cast?
+** DONE Template
+
+* Footnotes
+
+[fn:1] http://codekevin.blogspot.com/2012/09/bloomberg-c-interview-questions.html
+
+[fn:2] https://code.google.com/p/hypertable/wiki/WhyWeChoseCppOverJava
+
+[fn:3] [[http://en.wikipedia.org/wiki/Frostbite_(game_engine)][http://en.wikipedia.org/wiki/Frostbite\_(game\_engine)]]
+
+[fn:4] http://jaleelchen.com/archives/538
+
+[fn:5] http://www.parashift.com/c++-faq-lite/placement-new.html
+
+[fn:6] http://stackoverflow.com/questions/57483/what-are-the-differences-between-pointer-variable-and-reference-variable-in-c
+
+[fn:7] http://en.wikipedia.org/wiki/Static_cast

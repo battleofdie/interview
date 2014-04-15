@@ -1,3 +1,4 @@
+
 class Solution {
 public:
     vector<string> generateParenthesis(int n) {
@@ -30,4 +31,37 @@ public:
         
         return result;
     }
+};
+
+
+// more concise
+class Solution {
+public:
+   vector<string> generateParenthesis(int n) {
+      // Start typing your C/C++ solution below
+      // DO NOT write int main() function
+      // make sure left <= right
+      return generate(n, n);
+   }
+   
+   vector<string> generate(int l, int r)
+   {
+       if(l == 0) return vector<string>( {string(r, ')')} ); // only choice
+       if(l > r) return vector<string>(); // invalid
+       
+       vector<string> result;
+       vector<string> left = generate(l-1, r);
+       for(auto &e: left)
+       {
+           result.push_back( string("(") + e );
+       }
+       
+       vector<string> right = generate(l, r-1);
+       for(auto &e: right)
+       {
+           result.push_back( string(")") + e);
+       }
+       
+       return result;
+   }
 };

@@ -1,0 +1,148 @@
+* Set 1 [0/10]
+  1. [ ] Given a number N, find the smallest even number E such that E > N and digits in N and E are same. 
+     Print NONE otherwise. 
+     Sample: 
+     Input 
+     N = 34722641 
+     Output 
+     E = 34724126 
+     Input 
+     N = 8234961 
+     Output 
+     E = 8236194 (instead of 8236149) 
+     Java solution
+
+     => My cheating solution: 
+     #+begin_example
+     strignstream ss;
+     ss << num;
+    
+     string a = ss.str();
+
+     while(next_permutation(a.begin(), a.end()))
+     {
+         if( (a.back() - '0') % 2 == 0 ) 
+             return true;
+     }
+
+     return false;
+     #+end_example
+  2. [ ] Given two words, determine if the first word, or any anagram of it, appears in consecutive characters of the second word. For instance, tea appears as an anagram in the 
+     last three letters of slate, but let does not appear as an anagram in actor even though all the letters of let appear in slate. 
+     Return the anagram of the first word that has appeared in the second word. 
+
+     #+begin_example
+     Sample Input 1 
+     tea 
+     slate 
+
+     Sample Output1 
+     ate 
+     Sample Input 2 
+     let 
+     slate 
+
+     Sample Output2 
+     NONE 
+
+     java solution
+     #+end_example
+     
+     => Sliding window on the second word; Maintain a map for first string, like int m[ 26 ] assuming we have only 26 unique characters; When slid to right, increase count
+     of the new char while decrease count of the old one; Examine the map every time we slid to right; Time complexity O(n + m)
+
+  3. [ ] Given a string, complete the given function to recursively remove the adjacent duplicate characters and return the resultant string. If there are no characters left in 
+     the resultant string, return "-1" (without quotes). 
+
+     #+begin_example
+     Sample Test Cases 
+     Sample Input: ABCCBCBA 
+     Output: ACBA 
+
+     Explanation: (ABCCBCBA --> ABBCBA --> ACBA) 
+     Sample Input: AA 
+     Sample Output: -1 
+     Java solution
+     #+end_example
+
+  4. [ ] Write a class that displays average of stock prices for a given stock symbol for the last 10 minutes. We have a service that sends stock updates about 5000 times per second. 
+     The structure of the message is :
+
+     #+begin_example
+        Message {
+          long timestamp;
+          String symbol; // E.g. AAPL
+          double price;
+        }     
+     #+end_example
+
+     => Use a ring buffer (circular queue, or doubly linked list); When a new ticker comes in, delete the old one and add the new one; 
+     #+begin_example
+     average = (average*count - oldest + newest)/count
+     #+end_example
+     
+
+  5. [ ] Queue implementation in Java.
+  6. [ ] Given an array of integer, find the minimum in the sliding window of size 4, in most optimal way. [fn:3]
+         #+begin_example
+         ex [2,1,3,4,6,3,8,9,10,12,56] 
+         Output : [1,1,3,3,3,3,8.....]
+         #+end_example
+  7. [ ] Design an iterator for a given stream of integers, with next() and hasnext() being called in any sequence, but skipping any 0's in the stream. [fn:1]
+  8. [ ] Find if a given array has any duplicates, with O(n) complexity. [fn:2]
+  9. [ ] Find top K(1000) strings that occur frequently from a file having some billions of strings. [fn:4]
+  10. [ ] Given a list of 'N' coins, their values being in an array A[], return the minimum number of coins required to sum to 'S' [fn:5]
+          Ans: Greedy doesn’t work. Say A = (1,2,4,5) , S = 8
+          #+begin_example
+          f(n, s) = f(n-1, s)         
+	  f(n, s - A[n]) +1    if s > A[n] && f(n, s-A[n]) + 1 < f(n-1, s)
+
+          changes[S+1]
+          changes[0] = 0
+          changes[i] = min{ changes[i - A[j]]+1, changes[i]} j = 0:N
+          #+end_example
+
+          #+begin_example
+          #include <iostream>
+          #include <vector>
+
+          using namespace std;
+
+          int makeChanges(vector<int> coins, int s)
+          {
+                  if(s <= 0) return 0;
+                  vector<int> N(s+1, 0);
+
+                  for(int i=1; i<=s; i++)
+                  {
+                          N[i] = 65536;
+                          for(int j=0; j<coins.size(); j++)
+                          {
+                                  if(i >= coins[j] && N[i-coins[j]]+1 < N[i])
+                                          N[i] = N[i-coins[j]]+1;
+                          }
+                  }
+
+                  return N[s];
+          }
+
+          int main() {
+                  // your code goes here
+                  vector<int> coins = {1, 2, 4, 7, 8, 10};
+                  cout << makeChanges(coins, 8);
+                  return 0;
+          }
+          #+end_example
+
+
+* Footnotes
+
+[fn:1] http://www.careercup.com/question?id=5693294772224000
+
+[fn:2] http://www.careercup.com/question?id=5749936800923648
+
+[fn:3] http://www.careercup.com/question?id=5634264741707776
+
+[fn:4] http://www.careercup.com/question?id=5186550681829376
+
+[fn:5] http://www.careercup.com/question?id=4788874425401344

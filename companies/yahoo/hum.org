@@ -1,0 +1,8 @@
+1. Top-K search strings, large input
+2. Return first character that only occuring one time followed with occuring twice 
+   Roman to integer
+3. check whether two strings are rotated permutation or not
+   ex. 'abcde' and 'cdeab' will return true
+   ex. 'abcde' and 'cdeba' will return false
+4. Java basic concepts, stupid!!! 
+   Reverse words in a string in place, keep the delimiters
